@@ -23,7 +23,7 @@ export function ListFooter({ createServer, showDiscover }: FooterProps) {
         <>
             <a onClick={createServer}>
                 <ItemContainer>
-                    <Tooltip content="Add a server" div right>
+                    <Tooltip content="Добавить сервер" div right>
                         <Avatar
                             size={42}
                             fallback={<Plus color="var(--accent)" size={24} />}
@@ -35,7 +35,7 @@ export function ListFooter({ createServer, showDiscover }: FooterProps) {
             {showDiscover && (
                 <Link to="/discover">
                     <ItemContainer>
-                        <Tooltip content="Discover Revolt" div right>
+                        <Tooltip content="Исследуйте Zeelo" div right>
                             <Avatar
                                 size={42}
                                 fallback={

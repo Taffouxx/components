@@ -1,6 +1,6 @@
 html:not(.dark) {
-    --accent: #fd6671;
-    --accent-rgb: 253, 102, 113;
+    --accent: #4ec9ff;
+    --accent-rgb: 78, 201, 255;
     --background: #f6f6f6;
     --background-rgb: 246, 246, 246;
     --foreground: #000000;
@@ -21,8 +21,8 @@ html:not(.dark) {
     --error-rgb: 237, 66, 69;
     --hover: rgba(0, 0, 0, 0.2);
     --hover-rgb: 0, 0, 0;
-    --scrollbar-thumb: #ca525a;
-    --scrollbar-thumb-rgb: 202, 82, 90;
+    --scrollbar-thumb: #3ba3cc;
+    --scrollbar-thumb-rgb: 59, 163, 204;
     --scrollbar-track: transparent;
     --scrollbar-track-rgb: 0, 0, 0;
     --primary-background: #ffffff;

@@ -1,6 +1,6 @@
 html.dark {
-    --accent: #fd6671;
-    --accent-rgb: 253, 102, 113;
+    --accent: #4ec9ff;
+    --accent-rgb: 78, 201, 255;
     --background: #191919;
     --background-rgb: 25, 25, 25;
     --foreground: #f6f6f6;
@@ -21,8 +21,8 @@ html.dark {
     --error-rgb: 237, 66, 69;
     --hover: rgba(0, 0, 0, 0.1);
     --hover-rgb: 0, 0, 0;
-    --scrollbar-thumb: #ca525a;
-    --scrollbar-thumb-rgb: 202, 82, 90;
+    --scrollbar-thumb: #3ba3cc;
+    --scrollbar-thumb-rgb: 59, 163, 204;
     --scrollbar-track: transparent;
     --scrollbar-track-rgb: 0, 0, 0;
     --primary-background: #242424;
