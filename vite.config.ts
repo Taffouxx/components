@@ -47,7 +47,9 @@ export default defineConfig({
         preact(),
         macrosPlugin(),
         legacy({
-            targets: ["defaults", "not IE 11"],
+            targets: ["chrome >= 87", "firefox >= 78", "safari >= 14", "edge >= 88"],
+            modernPolyfills: true,
+            additionalLegacyPolyfills: ["regenerator-runtime/runtime"],
         }),
         VitePWA({
             srcDir: "src",
