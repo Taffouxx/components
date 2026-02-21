@@ -50,6 +50,7 @@ export default defineConfig({
             targets: ["chrome >= 87", "firefox >= 78", "safari >= 14", "edge >= 88"],
             modernPolyfills: true,
             additionalLegacyPolyfills: ["regenerator-runtime/runtime"],
+            renderLegacyChunks: false,
         }),
         VitePWA({
             srcDir: "src",
@@ -118,6 +119,7 @@ export default defineConfig({
     ],
     build: {
         sourcemap: true,
+        target: "es2021",
         rollupOptions: {
             input: {
                 main: resolve(__dirname, "index.html"),
