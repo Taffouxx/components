@@ -104,32 +104,11 @@ export default class Session {
     }
 
     /**
-     * Called when the client emits an error
+     * Called when the client emits an error (deprecated - use inline handler in createClient)
      */
     private onError(err: any) {
-        console.log("Client error:", err);
-        
-        // Handle invalid session error
-        if (err?.data?.type === "InvalidSession") {
-            console.log("Invalid session detected, removing session and transitioning to Ready");
-            this.state = "Ready";
-            
-            // Remove current session if we can identify it
-            if (this.user_id) {
-                state.auth.removeSession(this.user_id);
-                this.user_id = null;
-            }
-            
-            // Destroy and recreate client
-            this.destroyClient();
-        }
-        
-        // Handle WebSocket connection errors
-        if (err?.type === "error" && err?.target?.url?.includes("events.stoat.chat")) {
-            console.log("WebSocket connection failed to:", err.target?.url);
-            console.log("WebSocket readyState:", err.target?.readyState);
-            console.log("This may indicate an invalid token or network issue");
-        }
+        console.log("Client error (deprecated handler):", err);
+        // This method is deprecated - error handling is now done inline in createClient
     }
 
     /**
@@ -142,9 +121,36 @@ export default class Session {
             autoReconnect: false,
         });
 
+        // Store reference to this Session instance for error handlers
+        const sessionInstance = this;
+        
         this.client.addListener("dropped", this.onDropped);
         this.client.addListener("ready", this.onReady);
-        this.client.addListener("error", this.onError);
+        this.client.addListener("error", function(err: any) {
+            console.log("Client error:", err);
+            
+            // Handle invalid session error
+            if (err?.data?.type === "InvalidSession") {
+                console.log("Invalid session detected, removing session and transitioning to Ready");
+                sessionInstance.state = "Ready";
+                
+                // Remove current session if we can identify it
+                if (sessionInstance.user_id) {
+                    state.auth.removeSession(sessionInstance.user_id);
+                    sessionInstance.user_id = null;
+                }
+                
+                // Destroy and recreate client
+                sessionInstance.destroyClient();
+            }
+            
+            // Handle WebSocket connection errors
+            if (err?.type === "error" && err?.target?.url?.includes("events.stoat.chat")) {
+                console.log("WebSocket connection failed to:", err.target?.url);
+                console.log("WebSocket readyState:", err.target?.readyState);
+                console.log("This may indicate an invalid token or network issue");
+            }
+        });
     }
 
     /**
