@@ -37,8 +37,8 @@ RUN echo "Building with VITE_API_URL=$VITE_API_URL"
 
 RUN sed -i '/"packageManager"/d' external/revolt.js/package.json
 
-# Собираем submodules
-RUN yarn build-submodules || echo "submodules build skipped"
+# Собираем submodules с использованием npm (вне yarn workspaces)
+RUN yarn build-submodules
 
 # Собираем основной проект
 RUN yarn build
