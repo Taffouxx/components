@@ -37,20 +37,11 @@ RUN echo "Building with VITE_API_URL=$VITE_API_URL"
 
 RUN sed -i '/"packageManager"/d' external/revolt.js/package.json
 
-WORKDIR /app/external/revolt.js
-RUN yarn install --frozen-lockfile || yarn install
-RUN yarn build || echo "revolt.js build skipped"
-
-# Возвращаемся в корень
-WORKDIR /app
-
-# УСТАНАВЛИВАЕМ НЕДОСТАЮЩУЮ БИБЛИОТЕКУ:
+# Собираем submodules
+RUN yarn build-submodules || echo "submodules build skipped"
 
 # Собираем проект
-RUN yarn build --frozen-lockfile
-
-RUN cd external/revolt.js && yarn build || echo "revolt.js already built"
-RUN cd external/components && yarn build || echo "components already built"
+RUN yarn build
 
 # === Stage 2: Production ===
 FROM caddy:2-alpine
