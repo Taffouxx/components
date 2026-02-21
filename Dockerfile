@@ -40,7 +40,7 @@ RUN sed -i '/"packageManager"/d' external/revolt.js/package.json
 # Собираем submodules
 RUN yarn build-submodules || echo "submodules build skipped"
 
-# Собираем проект
+# Собираем основной проект
 RUN yarn build
 
 # === Stage 2: Production ===
