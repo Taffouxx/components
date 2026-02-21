@@ -168,8 +168,20 @@ export default class Session {
             }
             
             state.auth.setSession(data.session as any);
-        } catch (err) {
+        } catch (err: any) {
             this.state = "Ready";
+            
+            // Handle invalid session error
+            if (err?.data?.type === "InvalidSession") {
+                console.log("Invalid session, removing and requiring re-authentication");
+                // Remove the invalid session from auth store
+                const session = data.session as any;
+                if (session.user_id) {
+                    state.auth.removeSession(session.user_id);
+                }
+                return;
+            }
+            
             throw err;
         }
     }
