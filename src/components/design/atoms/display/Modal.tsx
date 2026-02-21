@@ -205,7 +205,7 @@ export const Modal: (props: Props) => JSX.Element = ({
                 {actions && actions.length > 0 && (
                     <Actions>
                         {actions.map((x, index) => (
-                            // @ts-expect-error cope
+                            {/* @ts-ignore */}
                             <Button
                                 disabled={disabled}
                                 key={index}

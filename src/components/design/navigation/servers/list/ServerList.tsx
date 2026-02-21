@@ -103,9 +103,9 @@ export function ServerList(props: Props & ParentProps & FooterProps) {
 
     return (
         <Base>
-            {/* @ts-expect-error cope */}
+            {/* @ts-ignore */}
             <DragDropContext onDragEnd={useDragEndCustomReorder(reorder)}>
-                {/* @ts-expect-error cope */}
+                {/* @ts-ignore */}
                 <Droppable
                     droppableId="droppable"
                     mode="virtual"
