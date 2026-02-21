@@ -1,0 +1,401 @@
+/* Settings animations */
+@keyframes open {
+    0% {
+        transform: scale(1.2);
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 0.5;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes close {
+    0% {
+        transform: scale(1);
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(1.2);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Settings CSS */
+.settings[data-mobile="true"] {
+    flex-direction: column;
+    background: var(--primary-header);
+
+    .sidebar,
+    .content {
+        background: var(--primary-background);
+    }
+
+    /* Sidebar */
+    .sidebar {
+        overflow-y: auto;
+
+        .container {
+            padding: 12px 10px 80px;
+            min-width: 218px;
+        }
+
+        .scrollbox {
+            width: 100%;
+        }
+
+        .version {
+            place-items: center;
+        }
+    }
+
+    /* Content */
+    .content {
+        ::-webkit-scrollbar-thumb {
+            border-bottom: none;
+        }
+
+        .scrollbox {
+            overflow: auto;
+        }
+
+        .contentcontainer {
+            max-width: unset !important;
+            padding: 20px 10px 80px;
+        }
+    }
+}
+
+.settings:not([data-mobile="true"]) {
+    top: 0;
+    left: 0;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    animation: open 340ms cubic-bezier(0.2, 0.9, 0.5, 1.16) forwards;
+
+    &.closing {
+        animation: close 340ms cubic-bezier(0.5, 0, 0.8, 0.11);
+    }
+
+    .scrollbox::-webkit-scrollbar-thumb {
+        background-clip: content-box;
+        border-top: 80px solid transparent;
+    }
+
+    .container {
+        max-width: 300px;
+    }
+}
+
+.settings {
+    height: 100%;
+    display: flex;
+    user-select: none;
+    flex-direction: row;
+
+    background: var(--background);
+
+    /* Scrollbar styling */
+    ::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: var(--scrollbar-thumb);
+        border-radius: 4px;
+
+        &:hover {
+            background: var(--tertiary-background);
+        }
+    }
+
+    .scrollbox {
+        overflow-y: scroll;
+        visibility: hidden;
+        transition: visibility 0.1s;
+    }
+
+    .container,
+    .contentcontainer,
+    .scrollbox:hover,
+    .scrollbox:focus {
+        visibility: visible;
+    }
+
+    .sidebar {
+        flex: 1 0 218px;
+        display: flex;
+        justify-content: flex-end;
+        background: var(--secondary-background);
+
+        .container {
+            min-width: 218px;
+            padding: 80px 12px;
+            display: flex;
+            gap: 2px;
+            flex-direction: column;
+        }
+
+        .divider {
+            height: 20px;
+        }
+
+        .donate {
+            color: goldenrod !important;
+        }
+
+        .logOut,
+        .deleteServer {
+            color: var(--error) !important;
+        }
+
+        .version {
+            margin: 1.5rem 12px 0;
+            font-size: 0.625rem;
+            color: var(--tertiary-foreground);
+            font-family: var(--monospace-font), monospace;
+            user-select: text;
+            display: grid;
+
+            >div {
+                gap: 2px;
+                display: flex;
+                flex-direction: column;
+            }
+
+            a:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    .content {
+        flex: 1 1 800px;
+        display: flex;
+        overflow-y: auto;
+
+        .scrollbox {
+            display: flex;
+            flex-grow: 1;
+            align-items: stretch;
+        }
+
+        .contentcontainer {
+            display: flex;
+            gap: 20px;
+            max-width: 940px;
+            padding: 80px 40px;
+            width: 100%;
+            flex-direction: column;
+
+            // This prevents members, invites and ban list from being able to properly display.
+            // height: fit-content;
+        }
+
+        details {
+            margin: 14px 0;
+        }
+
+        hr {
+            border: none;
+            height: 1px;
+            width: calc(100% - 10px);
+            background: linear-gradient(90deg, transparent, var(--tertiary-foreground), transparent);
+            margin: 24px auto;
+            flex-grow: 0;
+            opacity: 0.3;
+        }
+
+        h1 {
+            margin: 0;
+            line-height: 1.2;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--foreground);
+        }
+
+        h3 {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            color: var(--tertiary-foreground);
+            letter-spacing: 0.02em;
+            font-weight: 700;
+
+            &:first-child {
+                margin-top: 0;
+            }
+        }
+
+        h4 {
+            margin: 4px 2px;
+            font-size: 0.8125rem;
+            color: var(--tertiary-foreground);
+            text-transform: uppercase;
+        }
+
+        h5 {
+            margin-top: 0;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--secondary-foreground);
+
+            >a:hover {
+                text-decoration: underline;
+            }
+        }
+
+        h6 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--foreground);
+        }
+
+        details {
+            summary {
+                font-size: 0.8125rem;
+                font-weight: 700;
+                text-transform: uppercase;
+                color: var(--tertiary-foreground);
+                cursor: pointer;
+                transition: color 150ms ease;
+
+                &:hover {
+                    color: var(--foreground);
+                }
+            }
+        }
+
+        /* Global button styling inside settings */
+        button,
+        [role="button"] {
+            transition: all 150ms ease;
+
+            &:active {
+                transform: scale(0.98);
+            }
+        }
+
+        /* Global input/textarea/select styling inside settings */
+        input,
+        textarea,
+        select {
+            background: var(--primary-background);
+            border-radius: 4px;
+            color: var(--foreground);
+            transition: border-color 150ms ease, box-shadow 150ms ease;
+
+            &:focus {
+                border-color: var(--accent);
+                box-shadow: 0 0 0 2px rgba(var(--accent-rgb, 88, 101, 242), 0.3);
+                outline: none;
+            }
+        }
+
+        /* Save success animation */
+        .saveSuccess {
+            animation: slideInRight 200ms ease;
+            background: var(--success);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 4px;
+        }
+
+        .footer {
+            border-top: 1px solid var(--tertiary-background);
+            margin: 0;
+            padding-top: 8px;
+            font-size: 0.875rem;
+            color: var(--tertiary-foreground);
+        }
+    }
+
+    .action {
+        flex-grow: 1;
+        padding: 80px 8px;
+        visibility: visible;
+        position: sticky;
+        top: 0;
+
+        &:after {
+            content: "ESC";
+            margin-top: 4px;
+            display: flex;
+            justify-content: center;
+            width: 40px;
+            opacity: 0.5;
+            font-size: 0.75rem;
+            color: var(--tertiary-foreground);
+        }
+
+        .closeButton {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: var(--border-radius-half);
+            height: 40px;
+            width: 40px;
+            border: 2px solid var(--tertiary-background);
+            cursor: pointer;
+            transition: all 150ms ease;
+
+            svg {
+                color: var(--secondary-foreground);
+                transition: color 150ms ease;
+            }
+
+            &:hover {
+                background: var(--hover);
+                border-color: var(--tertiary-foreground);
+
+                svg {
+                    color: var(--foreground);
+                }
+            }
+
+            &:active {
+                transform: scale(0.95) translateY(1px);
+            }
+        }
+    }
+}
+
+@media (pointer: coarse) {
+    .scrollbox {
+        visibility: visible !important;
+        overflow-y: auto;
+    }
+}
