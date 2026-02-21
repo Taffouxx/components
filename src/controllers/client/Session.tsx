@@ -184,8 +184,7 @@ export default class Session {
                 if (data.knowledge === "new") {
                     const config = await this.client!.api.get("/");
                     this.client!.configuration = config;
-                    this.client!.session = data.session;
-                    (this.client! as any).$updateHeaders();
+                    this.client!.useExistingSession(data.session);
 
                     const { onboarding } = await this.client!.api.get(
                         "/onboard/hello",
