@@ -191,7 +191,13 @@ export default class Session {
      */
     private async continueLogin(data: Transition & { action: "LOGIN" }) {
         try {
-            await this.client!.useExistingSession(data.session as any);
+            // Extract session data from proxy if needed
+            const sessionData = data.session;
+            console.log("Session data:", sessionData);
+            console.log("Session data type:", typeof sessionData);
+            console.log("Session data keys:", sessionData ? Object.keys(sessionData) : 'null');
+            
+            await this.client!.useExistingSession(sessionData as any);
             this.client!.connect();
             
             // Wait for user to be loaded
@@ -204,14 +210,15 @@ export default class Session {
                 });
             }
             
-            state.auth.setSession(data.session as any);
+            state.auth.setSession(sessionData as any);
         } catch (err: any) {
             this.state = "Ready";
             
             // Handle invalid session error
             if (err?.data?.type === "InvalidSession") {
                 console.log("Invalid session, removing and requiring re-authentication");
-                // Remove the invalid session from auth store
+                console.log("Error details:", err);
+                // Remove invalid session from auth store
                 const session = data.session as any;
                 if (session.user_id) {
                     state.auth.removeSession(session.user_id);
