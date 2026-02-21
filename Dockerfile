@@ -47,7 +47,10 @@ WORKDIR /app
 # УСТАНАВЛИВАЕМ НЕДОСТАЮЩУЮ БИБЛИОТЕКУ:
 
 # Собираем проект
-RUN yarn build
+RUN yarn build --frozen-lockfile
+
+RUN cd external/revolt.js && yarn build || echo "revolt.js already built"
+RUN cd external/components && yarn build || echo "components already built"
 
 # === Stage 2: Production ===
 FROM caddy:2-alpine
