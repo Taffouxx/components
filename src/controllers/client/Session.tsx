@@ -116,8 +116,11 @@ export default class Session {
      * @param apiUrl Optionally specify an API URL
      */
     private createClient(apiUrl?: string) {
+        const actualApiUrl = apiUrl ?? import.meta.env.VITE_API_URL;
+        console.log("Creating client with API URL:", actualApiUrl);
+        
         this.client = new Client({
-            baseURL: apiUrl ?? import.meta.env.VITE_API_URL,
+            baseURL: actualApiUrl,
             autoReconnect: false,
         });
 
