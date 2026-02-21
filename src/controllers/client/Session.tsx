@@ -105,6 +105,28 @@ export default class Session {
     }
 
     /**
+     * Called when the client emits an error
+     */
+    private onError(err: any) {
+        console.log("Client error:", err);
+        
+        // Handle invalid session error
+        if (err?.data?.type === "InvalidSession") {
+            console.log("Invalid session detected, removing session and transitioning to Ready");
+            this.state = "Ready";
+            
+            // Remove current session if we can identify it
+            if (this.user_id) {
+                state.auth.removeSession(this.user_id);
+                this.user_id = null;
+            }
+            
+            // Destroy and recreate client
+            this.destroyClient();
+        }
+    }
+
+    /**
      * Create a new Revolt.js Client for this Session
      * @param apiUrl Optionally specify an API URL
      */
@@ -118,16 +140,18 @@ export default class Session {
 
         this.client.addListener("dropped", this.onDropped);
         this.client.addListener("ready", this.onReady);
+        this.client.addListener("error", this.onError);
     }
 
     /**
      * Destroy the client including any listeners.
      */
     private destroyClient() {
-        this.client!.removeAllListeners();
-        this.client!.logout();
-        this.user_id = null;
-        this.client = null;
+        if (this.client) {
+            this.client!.removeAllListeners();
+            this.user_id = null;
+            this.client = null;
+        }
     }
 
     /**
