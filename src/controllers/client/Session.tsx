@@ -154,9 +154,20 @@ export default class Session {
      */
     private async continueLogin(data: Transition & { action: "LOGIN" }) {
         try {
-            await this.client!.useExistingSession(data.session);
-            this.user_id = this.client!.user!._id;
-            state.auth.setSession(data.session);
+            await this.client!.useExistingSession(data.session as any);
+            this.client!.connect();
+            
+            // Wait for user to be loaded
+            if (this.client!.user) {
+                this.user_id = this.client!.user.id;
+            } else {
+                // Wait for user to be available
+                this.client!.once("ready", () => {
+                    this.user_id = this.client!.user!.id;
+                });
+            }
+            
+            state.auth.setSession(data.session as any);
         } catch (err) {
             this.state = "Ready";
             throw err;
