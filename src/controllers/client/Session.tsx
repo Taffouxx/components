@@ -182,7 +182,8 @@ export default class Session {
                 }
 
                 if (data.knowledge === "new") {
-                    await this.client!.fetchConfiguration();
+                    const config = await this.client!.api.get("/");
+                    this.client!.configuration = config;
                     this.client!.session = data.session;
                     (this.client! as any).$updateHeaders();
 
