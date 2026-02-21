@@ -42,9 +42,11 @@ class ClientController {
         });
 
         // ! FIXME: loop until success infinitely
-        this.apiClient
-            .fetchConfiguration()
-            .then(() => (this.configuration = this.apiClient.configuration!));
+        this.apiClient.api.get("/").then((config: any) => {
+            this.configuration = config;
+        }).catch(() => {
+            // Configuration fetch failed, will be fetched on login
+        });
 
         this.configuration = null;
         this.sessions = new ObservableMap();
