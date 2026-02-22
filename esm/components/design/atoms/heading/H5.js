@@ -1,0 +1,1 @@
+import styled from"styled-components";export var H5=styled.h5.withConfig({displayName:"H5",componentId:"sc-5lm3au-0"})(["margin-top:0;font-size:0.75rem;font-weight:500;color:var(--foreground);"]);

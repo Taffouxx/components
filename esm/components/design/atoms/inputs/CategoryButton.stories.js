@@ -1,0 +1,1 @@
+import React from"react";import{CategoryButton}from"./CategoryButton";export default{title:"Design System/Atoms/Inputs/Category Button",component:CategoryButton,argTypes:{}};var Template=function(a){return React.createElement(CategoryButton,a)};export var Default=Template.bind({});

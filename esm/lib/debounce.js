@@ -1,0 +1,1 @@
+import{useCallback}from"react";export function debounce(a,b){var c;return function(){for(var d=arguments.length,e=Array(d),f=0;f<d;f++)e[f]=arguments[f];clearTimeout(c),c=setTimeout(function(){a.apply(void 0,e)},b)}}export function useDebounceCallback(a,b){var c=2<arguments.length&&arguments[2]!==void 0?arguments[2]:1e3;return useCallback(debounce(a,c),b)}

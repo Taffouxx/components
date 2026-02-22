@@ -1,0 +1,1 @@
+import React from"react";import{H5}from"./H5";export default{title:"Design System/Atoms/Headings/Size 5",component:H5,argTypes:{children:{name:"Content",type:"string",defaultValue:"I am a heading of size 5!"}}};var Template=function(a){return React.createElement(H5,a)};export var Default=Template.bind({});

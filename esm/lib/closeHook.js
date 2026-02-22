@@ -1,0 +1,1 @@
+import{useEffect,useRef}from"react";export default function useCloseHook(a){var b=useRef(null);return useEffect(function(){if(a){var c=function(c){c.composedPath().includes(b.current)||a()};return document.addEventListener("click",c),function(){return document.removeEventListener("click",c)}}},[a]),b}

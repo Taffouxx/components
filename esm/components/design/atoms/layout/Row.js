@@ -1,0 +1,1 @@
+import styled,{css}from"styled-components";export var Row=styled.div.withConfig({displayName:"Row",componentId:"sc-smhijf-0"})(["display:flex;flex-direction:row;gap:",";"," ",""],function(a){var b;return null!==(b=a.gap)&&void 0!==b?b:"8px"},function(a){return a.centred&&css(["align-items:center;"])},function(a){return a.grow&&css(["flex-grow:1;"])});

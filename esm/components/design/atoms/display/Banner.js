@@ -1,0 +1,1 @@
+import styled from"styled-components";export var Banner=styled.div.withConfig({displayName:"Banner",componentId:"sc-1ls7wt5-0"})(["padding:8px;font-size:0.875rem;text-align:center;color:var(--accent);background:var(--primary-background);"]);

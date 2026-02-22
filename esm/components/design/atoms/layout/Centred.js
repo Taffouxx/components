@@ -1,0 +1,1 @@
+import styled from"styled-components";export var Centred=styled.div.withConfig({displayName:"Centred",componentId:"sc-1cem2tm-0"})(["display:flex;align-items:center;justify-content:center;padding:",";"],function(a){var b;return null!==(b=a.padding)&&void 0!==b?b:"0"});

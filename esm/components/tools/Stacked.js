@@ -1,0 +1,1 @@
+import styled from"styled-components";export var Stacked=styled.div.withConfig({displayName:"Stacked",componentId:"sc-lx6w14-0"})(["display:grid;> *{grid-area:1 / 1;}"]);

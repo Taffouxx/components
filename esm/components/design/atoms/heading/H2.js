@@ -1,0 +1,1 @@
+import styled from"styled-components";export var H2=styled.h2.withConfig({displayName:"H2",componentId:"sc-a2ydqp-0"})(["margin:0;font-size:0.9375rem;font-weight:700;color:var(--foreground);"]);

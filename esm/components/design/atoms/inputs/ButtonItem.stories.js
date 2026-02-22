@@ -1,0 +1,1 @@
+import React from"react";import{ButtonItem}from"./ButtonItem";export default{title:"Design System/Atoms/Inputs/Button Item",component:ButtonItem};export var Default=function(){return React.createElement(ButtonItem,null,"Button!")};

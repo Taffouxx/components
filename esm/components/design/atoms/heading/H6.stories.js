@@ -1,0 +1,1 @@
+import React from"react";import{H6}from"./H6";export default{title:"Design System/Atoms/Headings/Size 6",component:H6,argTypes:{children:{name:"Content",type:"string",defaultValue:"I am a heading of size 6!"}}};var Template=function(a){return React.createElement(H6,a)};export var Default=Template.bind({});

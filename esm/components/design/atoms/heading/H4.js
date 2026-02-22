@@ -1,0 +1,1 @@
+import styled from"styled-components";export var H4=styled.h4.withConfig({displayName:"H4",componentId:"sc-1f4hirm-0"})(["margin:0;font-size:0.8125rem;font-weight:500;color:var(--secondary-foreground);"]);

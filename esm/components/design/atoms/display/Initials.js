@@ -1,0 +1,1 @@
+import React from"react";export function Initials(a){var b=a.input,c=a.maxLength;return React.createElement(React.Fragment,null,b.split(/\s+/).map(function(a){return a[0]}).filter(function(a){return a}).slice(0,c||100))}

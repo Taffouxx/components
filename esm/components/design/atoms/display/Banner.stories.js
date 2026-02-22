@@ -1,0 +1,1 @@
+import React from"react";import{Banner}from"./Banner";export default{title:"Design System/Atoms/Display/Banner",component:Banner,argTypes:{children:{name:"Content",type:"string",defaultValue:"I am a banner!"}}};var Template=function(a){return React.createElement(Banner,a)};export var Default=Template.bind({});

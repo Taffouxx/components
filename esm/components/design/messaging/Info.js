@@ -1,0 +1,1 @@
+import React from"react";import{observer}from"mobx-react-lite";export var Info=observer(function(a){var b=a.message,c=a.head;return c?React.createElement(React.Fragment,null,React.createElement("time",null,"Today at 19:00"),b.edited&&React.createElement("time",null,"(edited)")):b.edited?React.createElement("time",null,"(edited)"):React.createElement("time",null,"format")});

@@ -1,0 +1,1 @@
+import{isDesktop,isMobile,isTablet}from"react-device-detect";export var isTouchscreenDevice=!(isDesktop||isTablet)&&("undefined"!=typeof window&&0<navigator.maxTouchPoints||isMobile);
