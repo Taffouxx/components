@@ -166,7 +166,8 @@
         "workbox-precaching": "^6.1.5"
     },
     "name": "client",
-    "main": "index.js",
+    "main": "lib/index.js",
+    "module": "esm/index.js",
     "repository": "https://github.com/revoltchat/revite.git",
     "author": "Paul <paulmakles@gmail.com>",
     "license": "MIT",
